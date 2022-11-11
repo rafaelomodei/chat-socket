@@ -16,7 +16,13 @@ export const theme = extendTheme({
   },
   styles: {
     global: {
+      html: {
+        boxSizing: 'border-box',
+      },
       body: {
+        overflow: 'hidden',
+        margin: 0,
+        padding: 0,
         bg: '#1B1B1B',
         color: '#D9D9D9',
         fontFamily: 'Roboto, sans-serif',
