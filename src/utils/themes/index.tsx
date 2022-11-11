@@ -10,6 +10,7 @@ export const theme = extendTheme({
       secondary: '#A8A8AA',
       tertiary: '#35373A',
       green: '#009865',
+      greenLight: '#C9FFED',
       red: '#DF1828',
     },
   },
