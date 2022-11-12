@@ -18,7 +18,7 @@ export interface ICardContact {
 export const CardContact = (data: ICardContact) => {
   const { ip, image, message, name, timeMessageSend } = data;
   return (
-    <LinkBox alignItems='center' padding={4} mt={4} mb={4} width='100%'>
+    <LinkBox alignItems='center' padding={4} mt={4} mb={4}>
       <LinkOverlay
         href={`#${ip}`}
         display='flex'
