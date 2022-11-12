@@ -18,7 +18,7 @@ export interface ICardContact {
 export const CardContact = (data: ICardContact) => {
   const { ip, image, message, name, timeMessageSend } = data;
   return (
-    <LinkBox alignItems='center' padding={4} mt={4} mb={4}>
+    <LinkBox alignItems='center' padding={4} mt={4} mb={4} width='100%'>
       <LinkOverlay
         href={`#${ip}`}
         display='flex'
@@ -28,7 +28,7 @@ export const CardContact = (data: ICardContact) => {
         <Avatar name={name || ip} mr={4} />
         <Flex width='100%' flexDirection='column'>
           <Flex width='100%' justifyContent='space-between'>
-            <Heading size='md'>{name || ip}</Heading>
+            <Heading size='sm'>{name || ip}</Heading>
             {message && <Text>{timeMessageSend}</Text>}
           </Flex>
           {message && <Text noOfLines={1}>{message}</Text>}

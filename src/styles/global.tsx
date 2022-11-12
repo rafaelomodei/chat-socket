@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { theme } from '../utils/themes';
 
 export const GlobalStyle = createGlobalStyle`
@@ -7,6 +7,20 @@ export const GlobalStyle = createGlobalStyle`
   }
   *, *:before, *:after {
     box-sizing: inherit;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;             
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;        
+    border-radius: 16px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color:  ${theme.colors.brand.tertiary};   
+    border-radius: 16px;      
   }
 
 `;

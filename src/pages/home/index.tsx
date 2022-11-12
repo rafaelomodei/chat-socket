@@ -8,8 +8,9 @@ const Home = () => {
   return (
     <Flex>
       <Container
-        minWidth={500}
+        minWidth={400}
         height='100vh'
+        padding={0}
         bg={theme.colors.brand.backgroundSecondary}
       >
         <ContactList />

@@ -26,7 +26,7 @@ export const theme = extendTheme({
         bg: '#1B1B1B',
         color: '#D9D9D9',
         fontFamily: 'Roboto, sans-serif',
-        fontSize: '18px',
+        fontSize: '14px',
       },
     },
   },
