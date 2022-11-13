@@ -4,7 +4,6 @@ import {
   Divider,
   Flex,
   Heading,
-  Tab,
   TabList,
   TabPanel,
   TabPanels,
@@ -13,25 +12,43 @@ import {
 } from '@chakra-ui/react';
 import { theme } from '../../../utils/themes';
 import { constants } from '../../../utils/constant';
-
 import { CardContact } from '../cardContact';
 import { TabItem } from './styled';
+import { FaUserPlus, FaUsers } from 'react-icons/fa';
 
 export const ContactList = () => {
   return (
-    <Container margin={0} width='100%' height='100%' padding={0}>
-      <Heading size='xl' padding={2}>
+    <Container margin={0} width='100%' height='73%' padding={0}>
+      <Heading size='xl' m={4}>
         Chat socket
       </Heading>
-      <Box height={12} />
-      <Tabs variant='soft-rounded' padding={0}>
-        <TabList>
+      <Box height={8} />
+
+      <Tabs variant='soft-rounded' padding={0} height='100%'>
+        <TabList m={4} overflow='scroll'>
           <TabItem>Mensagens</TabItem>
           <TabItem>Contatos</TabItem>
+          <TabItem>
+            <FaUserPlus />{' '}
+            <Text ml={2} whiteSpace='nowrap'>
+              Novo contato
+            </Text>
+          </TabItem>
+          <TabItem>
+            <FaUsers />{' '}
+            <Text ml={2} whiteSpace='nowrap'>
+              Novo Grupo
+            </Text>
+          </TabItem>
         </TabList>
-        <TabPanels height='300px'>
+        <TabPanels height='100%'>
           <TabPanel>
-            <Flex flexDirection='column' overflow='auto' height='80vh' width='100%'>
+            <Flex
+              flexDirection='column'
+              overflow='auto'
+              // height='60vh'
+              width='100%'
+            >
               {constants.messages.map((message) => (
                 <div key={message.ip}>
                   <CardContact
@@ -46,7 +63,7 @@ export const ContactList = () => {
               ))}
             </Flex>
           </TabPanel>
-          <TabPanel overflow='auto' height='100vh'>
+          <TabPanel overflow='auto' height='100%'>
             {constants.contacts.map((message) => (
               <Box key={message.ip} width='100%'>
                 <CardContact

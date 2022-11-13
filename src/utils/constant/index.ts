@@ -89,7 +89,7 @@ const contacts: ICardContact[] = [
     ip: '192.168.0.11',
     image: '',
     timeMessageSend: '13:20',
-    name: 'Café Com Leite',
+    name: 'Ultimo contato',
   },
 ];
 

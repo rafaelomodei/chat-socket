@@ -6,7 +6,7 @@ export const TabItem = styled(Tab)`
   color: ${theme.colors.brand.primary} !important;
 
   &&[aria-selected='true'] {
-    color: ${theme.colors.brand.greenLight} !important;
+    color: white !important;
     background-color: ${theme.colors.brand.green};
   }
 `;

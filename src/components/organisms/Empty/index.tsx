@@ -3,7 +3,8 @@ import Lottie from 'lottie-react';
 import groovyWalkAnimation from '../../../utils/animations/981-consultation-outline-edited.json';
 import { LinkProfileDev } from '../linkProfileDev';
 import { Icon } from '@chakra-ui/icons';
-import { BsGithub } from 'react-icons/bs';
+import { BsGithub  } from 'react-icons/bs';
+
 
 export const Empty = () => {
   return (
