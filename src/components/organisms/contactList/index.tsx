@@ -9,12 +9,17 @@ import {
   TabPanels,
   Tabs,
   Text,
+  Tooltip,
 } from '@chakra-ui/react';
 import { theme } from '../../../utils/themes';
 import { constants } from '../../../utils/constant';
 import { CardContact } from '../cardContact';
 import { TabItem } from './styled';
 import { FaUserPlus, FaUsers } from 'react-icons/fa';
+import { MdMessage, MdContacts } from 'react-icons/md';
+
+import { FormsNewContact } from '../formsNewContact';
+import { FormsNewGroup } from '../formsNewGroup';
 
 export const ContactList = () => {
   return (
@@ -22,27 +27,32 @@ export const ContactList = () => {
       <Heading size='xl' m={4}>
         Chat socket
       </Heading>
+
       <Box height={8} />
 
       <Tabs variant='soft-rounded' padding={0} height='100%'>
-        <TabList m={4} overflow='scroll'>
-          <TabItem>Mensagens</TabItem>
-          <TabItem>Contatos</TabItem>
-          <TabItem>
-            <FaUserPlus />{' '}
-            <Text ml={2} whiteSpace='nowrap'>
-              Novo contato
-            </Text>
+        <TabList ml={4} mr={4}>
+          <TabItem m={2}>
+            <MdMessage size={24} />
           </TabItem>
-          <TabItem>
-            <FaUsers />{' '}
-            <Text ml={2} whiteSpace='nowrap'>
-              Novo Grupo
-            </Text>
+          <TabItem m={2}>
+            <MdContacts size={24} />
+          </TabItem>
+          <TabItem m={2}>
+            <FaUserPlus size={24} />
+          </TabItem>
+          <TabItem m={2}>
+            <FaUsers size={24} />
           </TabItem>
         </TabList>
         <TabPanels height='100%'>
           <TabPanel>
+            <Box>
+              <Heading ml={4} size='lg'>
+                Mensagens
+              </Heading>
+              <Divider mt={2} borderColor={theme.colors.brand.tertiary} />
+            </Box>
             <Flex
               flexDirection='column'
               overflow='auto'
@@ -64,6 +74,12 @@ export const ContactList = () => {
             </Flex>
           </TabPanel>
           <TabPanel overflow='auto' height='100%'>
+            <Box>
+              <Heading ml={4} size='lg'>
+                Contatos
+              </Heading>
+              <Divider mt={2} borderColor={theme.colors.brand.tertiary} />
+            </Box>
             {constants.contacts.map((message) => (
               <Box key={message.ip} width='100%'>
                 <CardContact
@@ -76,6 +92,12 @@ export const ContactList = () => {
                 <Divider borderColor={theme.colors.brand.tertiary} />
               </Box>
             ))}
+          </TabPanel>
+          <TabPanel>
+            <FormsNewContact />
+          </TabPanel>
+          <TabPanel>
+            <FormsNewGroup />
           </TabPanel>
         </TabPanels>
       </Tabs>
