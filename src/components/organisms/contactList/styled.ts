@@ -10,3 +10,9 @@ export const TabItem = styled(Tab)`
     background-color: ${theme.colors.brand.green};
   }
 `;
+
+export const ContainerContactList = styled.div`
+  width: 400px;
+  height: 100vh;
+  background-color: ${theme.colors.brand.backgroundSecondary};
+`;

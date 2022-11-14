@@ -1,15 +1,18 @@
 import Home from './pages/home';
 import { GlobalStyle } from './styles/global';
-import { ChakraProvider, Flex } from '@chakra-ui/react';
+import { ChakraProvider, Container, Flex } from '@chakra-ui/react';
 import { theme } from './utils/themes';
+import AppRoutes from './routes';
+import { ContactList } from './components/organisms/contactList';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <GlobalStyle />
-      <Flex padding={0} margin={0}>
-        <Home />
-      </Flex>
+      <div className='appContainer'>
+        <ContactList />
+        <AppRoutes />
+      </div>
     </ChakraProvider>
   );
 }

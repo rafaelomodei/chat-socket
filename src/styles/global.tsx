@@ -23,4 +23,9 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 16px;      
   }
 
+  .appContainer {
+    display: flex;
+    flex-direction : row;
+  }
+
 `;
