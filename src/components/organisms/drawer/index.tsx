@@ -9,6 +9,7 @@ import {
   DrawerOverlay,
   Flex,
   Heading,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { RefObject, useEffect } from 'react';
 import { FaUsers } from 'react-icons/fa';
@@ -16,6 +17,7 @@ import { useContact } from '../../../hooks/contact';
 import { Size } from '../../../utils/helpers';
 import { theme } from '../../../utils/themes';
 import { CardContact } from '../cardContact';
+import { Modal } from '../modal';
 import { Button } from './styled';
 
 interface IDrawer {
@@ -26,6 +28,11 @@ interface IDrawer {
 
 export const Drawer = ({ buttonRef, isOpen, onClose }: IDrawer) => {
   const { contacts, getAllContacts } = useContact();
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onClose: onCloseModal,
+  } = useDisclosure();
 
   useEffect(() => {
     getAllContacts();
@@ -68,11 +75,13 @@ export const Drawer = ({ buttonRef, isOpen, onClose }: IDrawer) => {
           <Heading size='sm' mt={8} mb={4} color={theme.colors.brand.red90}>
             Área de perigo
           </Heading>
-          <Button variant='outline' mb={4}>
+          <Button variant='outline' mb={4} onClick={() => onOpenModal()}>
             Deletar Grupo
           </Button>
         </DrawerBody>
       </DrawerContent>
+
+      <Modal isOpen={isOpenModal} onClose={onCloseModal} />
     </DrawerChakra>
   );
 };

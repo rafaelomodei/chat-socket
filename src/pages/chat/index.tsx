@@ -1,5 +1,5 @@
 import { Container, Flex, Text } from '@chakra-ui/react';
-import { NavBarChat } from '../../components/navBarChat/indext';
+import { NavBarChat } from '../../components/organisms/navBarChat/indext';
 import { ContainerChat } from './styled';
 
 const Chat = () => {

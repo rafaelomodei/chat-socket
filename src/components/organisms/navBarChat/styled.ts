@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../utils/themes';
+import { theme } from '../../../utils/themes';
 import {
   IconButton as IconButtonChakra,
   Button as ButtonChakra,
@@ -27,11 +27,11 @@ export const IconButton = styled(IconButtonChakra)`
     }
 
     :hover {
-      background: ${theme.colors.brand.green};
+      background: rgba(0, 0, 0, 0.1);
     }
 
     :active {
-      background: ${theme.colors.brand.green120};
+      background: rgba(0, 0, 0, 0.2);
     }
   }
 `;
