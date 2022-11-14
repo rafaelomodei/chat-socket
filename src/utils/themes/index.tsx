@@ -14,7 +14,9 @@ export const theme = extendTheme({
       green120: '#036141',
       green140: '#023423',
       greenLight: '#E8FFF7',
-      red: '#DF1828',
+      red: '#C72C39',
+      red90: '#DB4D59',
+
     },
   },
   styles: {

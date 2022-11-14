@@ -10,16 +10,14 @@ import {
   Tabs,
 } from '@chakra-ui/react';
 import { theme } from '../../../utils/themes';
-import { constants } from '../../../utils/constant';
-import { CardContact, ICardContact } from '../cardContact';
+import { CardContact } from '../cardContact';
 import { ContainerContactList, TabItem } from './styled';
 import { FaUserPlus, FaUsers } from 'react-icons/fa';
 import { MdMessage, MdContacts } from 'react-icons/md';
 
 import { FormsNewContact } from '../formsNewContact';
 import { FormsNewGroup } from '../formsNewGroup';
-import api from '../../../services/api';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useContact } from '../../../hooks/contact';
 import { useMessage } from '../../../hooks/message';
 
@@ -31,10 +29,6 @@ export const ContactList = () => {
     getAllContacts();
     getAllMessages();
   }, [getAllContacts, getAllMessages]);
-
-  useEffect(() => {
-    console.info('messages: ', messages);
-  }, [messages]);
 
   return (
     <ContainerContactList>

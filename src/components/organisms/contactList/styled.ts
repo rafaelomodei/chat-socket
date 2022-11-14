@@ -15,4 +15,5 @@ export const ContainerContactList = styled.div`
   width: 400px;
   height: 100vh;
   background-color: ${theme.colors.brand.backgroundSecondary};
+  border-right: 1px solid ${theme.colors.brand.tertiary};
 `;
