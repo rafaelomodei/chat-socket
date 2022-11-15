@@ -1,8 +1,9 @@
 import { Avatar, Flex, Heading, useDisclosure } from '@chakra-ui/react';
-import { ContainerNavBarChat, IconButton } from './styled';
+import { ContainerNavBarChat } from './styled';
 import { IoSettings } from 'react-icons/io5';
 import { useRef } from 'react';
 import { Drawer } from '../drawer';
+import { IconButton } from '../../molecules/IconButton';
 
 interface INavBarChat {
   name: string;

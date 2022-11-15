@@ -15,23 +15,3 @@ export const ContainerNavBarChat = styled.div`
   background-color: ${theme.colors.brand.backgroundSecondary};
   border-bottom: 1px solid ${theme.colors.brand.tertiary};
 `;
-
-export const IconButton = styled(IconButtonChakra)`
-  && {
-    color: ${theme.colors.brand.primary};
-    /* background: ${theme.colors.brand.green}; */
-    background: transparent;
-    svg {
-      height: 21px;
-      width: 21px;
-    }
-
-    :hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
-
-    :active {
-      background: rgba(0, 0, 0, 0.2);
-    }
-  }
-`;

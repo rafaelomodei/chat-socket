@@ -1,15 +1,18 @@
-import { Container, Flex, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
+import { InputMessage } from '../../components/organisms/inputMessage';
 import { NavBarChat } from '../../components/organisms/navBarChat/indext';
-import { ContainerChat } from './styled';
+import { Container, ContainerNavBar } from './styled';
 
 const Chat = () => {
   return (
-    <ContainerChat>
+    <Container>
       <NavBarChat
         name='Amantes da Estrada'
         img='https://lirp.cdn-website.com/9d12ecc7/dms3rep/multi/opt/caminhao-carreta-1920w.jpg'
       />
-    </ContainerChat>
+      <Text>Aqui vai ter menssagens</Text>
+      <InputMessage />
+    </Container>
   );
 };
 
