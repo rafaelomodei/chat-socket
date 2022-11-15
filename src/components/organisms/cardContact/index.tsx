@@ -35,7 +35,7 @@ export const CardContact = (data: ICardContact) => {
   return (
     <LinkBox alignItems='center' padding={handleSize() || 4} mt={4} mb={2}>
       <LinkOverlay
-        href={`#${ip}`}
+        href={`/chat/${ip}`}
         display='flex'
         flexDirection='row'
         alignItems='center'
