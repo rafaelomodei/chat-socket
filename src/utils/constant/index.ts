@@ -103,7 +103,40 @@ const contacts: ICardContact[] = [
   },
 ];
 
+const chatMessage = [
+  {
+    isYou: true,
+    name: 'Rafael Omodei',
+    img: 'https://avatars.githubusercontent.com/u/16935702?v=4',
+    timeMessageSend: '12:30',
+    messages: ['Olá, tudo bem?', 'Eu sou Rafael Omodei'],
+  },
+
+  {
+    isYou: false,
+    name: 'Jeferson Martin',
+    img: 'https://avatars.githubusercontent.com/u/51566081?v=4',
+    timeMessageSend: '12:31',
+    messages: ['Olá, Rafael', 'Eu estou bem!', 'E você como está?'],
+  },
+  {
+    isYou: true,
+    name: 'Rafael Omodei',
+    img: 'https://avatars.githubusercontent.com/u/16935702?v=4',
+    timeMessageSend: '12:31',
+    messages: ['Eu também estou bem 😄', 'Bora jogar um ETS2?', 'Fazer um comboio maroto 😜 🚛🚛'],
+  },
+  {
+    isYou: false,
+    name: 'Jeferson Martin',
+    img: 'https://avatars.githubusercontent.com/u/51566081?v=4',
+    timeMessageSend: '12:32',
+    messages: ['Demoro', 'Vou só pegar uma água e já volto', 'Já vai fazer ar ae no caminhão kkkk 🚛'],
+  },
+];
+
 export const constants = {
   contacts,
   messages,
+  chatMessage,
 };
