@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useUser } from '../../../hooks/user';
 import { constants } from '../../../utils/constant';
 import { ICardContact } from '../cardContact';
@@ -17,10 +17,11 @@ export interface IChatContent {
 }
 
 export const ChatContent = ({ messages }: IChatContent) => {
+  const bottomRef = useRef<HTMLDivElement>(null);
   const { profile } = useUser();
 
   useEffect(() => {
-    console.info('ChatContent::message: ', messages[0]);
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   return (
@@ -33,6 +34,7 @@ export const ChatContent = ({ messages }: IChatContent) => {
           messages={messageBlock.messages}
         />
       ))}
+      <div ref={bottomRef} />
     </Container>
   );
 };

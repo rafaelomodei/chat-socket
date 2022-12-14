@@ -1,4 +1,5 @@
 import { Avatar, Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { MutableRefObject, useRef } from 'react';
 import { Container, Message } from './styled';
 
 interface IChatBlock {

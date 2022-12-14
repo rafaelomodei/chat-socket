@@ -4,6 +4,14 @@ import socket from '../services/api';
 
 export const useMessage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [loadedMessages, setLoadingMessages] = useState(true);
+
+  const solicitationMessages = useCallback(async () => {
+    setInterval(() => {
+      socket.emit('getMessages');
+      setLoadingMessages(false);
+    }, 1000);
+  }, []);
 
   const getAllMessages = useCallback(async () => {
     socket.on('getMessages', (data) => {
@@ -15,5 +23,11 @@ export const useMessage = () => {
     socket.emit('chat', { messages: [message] });
   }, []);
 
-  return { messages, sendMessage, getAllMessages };
+  return {
+    messages,
+    loadedMessages,
+    sendMessage,
+    getAllMessages,
+    solicitationMessages,
+  };
 };
