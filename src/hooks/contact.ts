@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { ICardContact } from '../components/organisms/cardContact';
-import api from '../services/api';
+import { api } from '../services/api';
 
 export const useContact = () => {
   const [contacts, setContacts] = useState<ICardContact[]>([]);

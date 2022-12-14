@@ -133,6 +133,14 @@ const chatMessage = [
     timeMessageSend: '12:32',
     messages: ['Demoro', 'Vou só pegar uma água e já volto', 'Já vai fazer ar ae no caminhão kkkk 🚛'],
   },
+
+  {
+    isYou: false,
+    name: 'JGustavo Silva Quieregato',
+    img: 'https://avatars.githubusercontent.com/u/57011784?v=4',
+    timeMessageSend: '12:33',
+    messages: ['Eu já estou é na estrada!!'],
+  },
 ];
 
 export const constants = {

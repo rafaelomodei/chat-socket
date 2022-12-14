@@ -23,12 +23,11 @@ import { useMessage } from '../../../hooks/message';
 
 export const ContactList = () => {
   const { contacts, getAllContacts } = useContact();
-  const { messages, getAllMessages } = useMessage();
+  const { messages } = useMessage();
 
   useEffect(() => {
     getAllContacts();
-    getAllMessages();
-  }, [getAllContacts, getAllMessages]);
+  }, [getAllContacts]);
 
   return (
     <ContainerContactList>

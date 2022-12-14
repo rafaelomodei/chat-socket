@@ -3,10 +3,10 @@ import { IconButton } from '../../molecules/IconButton';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
 import { Box, Divider } from '@chakra-ui/react';
-import { theme } from '../../../utils/themes';
-import { Size } from '../../../utils/helpers';
+
 
 export const InputMessage = () => {
+ 
   return (
     <Container>
       <Content>
@@ -23,7 +23,7 @@ export const InputMessage = () => {
           <IconButton
             aria-label='Settings'
             icon={<RiSendPlaneFill />}
-            onClick={() => console.log('enviando mensagem...')}
+            onClick={() => console.log('')}
           />
         </Box>
       </Content>

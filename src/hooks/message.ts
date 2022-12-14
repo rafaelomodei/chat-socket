@@ -1,15 +1,18 @@
 import { useCallback, useState } from 'react';
+import { Socket } from 'socket.io-client';
 import { ICardContact } from '../components/organisms/cardContact';
-import api from '../services/api';
+import socket from '../services/api';
 
 export const useMessage = () => {
   const [messages, setMessages] = useState<ICardContact[]>([]);
 
   const getAllMessages = useCallback(async () => {
-    const { status, data } = await api.get('/messages');
-    if (status !== 200) throw new Error();
-    setMessages(data.messages);
+    socket.on('chat', (data) => {});
   }, []);
 
-  return { messages, getAllMessages };
+  const sendMessage = useCallback(async (message: string) => {
+    socket.emit('chat', { message: message });
+  }, []);
+
+  return { messages, sendMessage, getAllMessages };
 };

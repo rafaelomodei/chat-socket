@@ -10,7 +10,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <GlobalStyle />
       <div className='appContainer'>
-        <ContactList />
+        {/* <ContactList /> */}
         <AppRoutes />
       </div>
     </ChakraProvider>
