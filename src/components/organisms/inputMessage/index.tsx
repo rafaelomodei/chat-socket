@@ -3,14 +3,31 @@ import { IconButton } from '../../molecules/IconButton';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { ImAttachment } from 'react-icons/im';
 import { Box, Divider } from '@chakra-ui/react';
-
+import { useEffect, useState } from 'react';
+import { useMessage } from '../../../hooks/message';
+import socket from '../../../services/api';
 
 export const InputMessage = () => {
- 
+  const [inputMessage, setInputMessage] = useState<string>('');
+
+  const { sendMessage } = useMessage();
+
+  const handleInputMessage = (event: any) =>
+    setInputMessage(event.target.value);
+
+  const handleSendMessage = () => {
+    sendMessage(inputMessage);
+    setInputMessage('');
+  };
+
   return (
     <Container>
       <Content>
-        <Input placeholder='A sua mensagem...' />
+        <Input
+          placeholder='Escreva a sua mensagem...'
+          onChange={handleInputMessage}
+          value={inputMessage}
+        />
         <Box m={2}>
           <IconButton
             aria-label='Settings'
@@ -23,7 +40,7 @@ export const InputMessage = () => {
           <IconButton
             aria-label='Settings'
             icon={<RiSendPlaneFill />}
-            onClick={() => console.log('')}
+            onClick={handleSendMessage}
           />
         </Box>
       </Content>
