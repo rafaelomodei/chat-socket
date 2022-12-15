@@ -1,30 +1,40 @@
+import { useEffect, useRef } from 'react';
+import { useUser } from '../../../hooks/user';
 import { constants } from '../../../utils/constant';
+import { ICardContact } from '../cardContact';
 import { ChatBlock } from '../chatBlock';
 import { Container } from './styled';
 
-export const ChatContent = () => {
-  const messages = [
-    'Olá, tudo bem?',
-    'Eu sou o Rafael Omodei',
-    'E tenho 24 anos',
-  ];
+export interface IMessage {
+  userSend?: string;
+  userRequest?: string;
+  timeMessageSend?: string;
+  messages: Array<string>;
+}
 
-  const messagesJef = [
-    'Legal parça, mas idai',
-    'Ninguém quer saber sua idade não',
-  ];
+export interface IChatContent {
+  messages: Array<IMessage>;
+}
+
+export const ChatContent = ({ messages }: IChatContent) => {
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const { profile } = useUser();
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   return (
     <Container>
-      {constants.chatMessage.map((messageBlock) => (
+      {messages.map((messageBlock) => (
         <ChatBlock
-          isYou={messageBlock.isYou}
-          name={messageBlock.name}
-          img={messageBlock.img}
-          timeMessageSend={messageBlock.timeMessageSend}
+          isYou={messageBlock.userSend === profile.id}
+          name={`${messageBlock.userSend}`}
+          timeMessageSend={'13:30'}
           messages={messageBlock.messages}
         />
       ))}
+      <div ref={bottomRef} />
     </Container>
   );
 };

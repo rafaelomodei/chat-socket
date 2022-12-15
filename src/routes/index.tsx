@@ -6,7 +6,6 @@ import Home from '../pages/home';
 import Chat from '../pages/chat';
 import { theme } from '../utils/themes';
 import { ContactList } from '../components/organisms/contactList';
-import { Text } from '../pages/Test';
 
 // const home = lazy(() => import('../pages/home'));
 
