@@ -1,11 +1,11 @@
-import { Flex, Text } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
 import { ChatContent } from '../../components/organisms/chatContent';
 import { InputMessage } from '../../components/organisms/inputMessage';
 import { Loading } from '../../components/organisms/loading';
 import { NavBarChat } from '../../components/organisms/navBarChat/indext';
 import { useMessage } from '../../hooks/message';
-import { Container, ContainerNavBar } from './styled';
+import { Container } from './styled';
 
 const Chat = () => {
   const { messages, loadedMessages, getAllMessages, solicitationMessages } =
