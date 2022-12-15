@@ -20,12 +20,17 @@ export const InputMessage = () => {
     setInputMessage('');
   };
 
+  const handlerKeyPress = (event: any) => {
+    if (event.key === 'Enter') handleSendMessage();
+  };
+
   return (
     <Container>
       <Content>
         <Input
           placeholder='Escreva a sua mensagem...'
           onChange={handleInputMessage}
+          onKeyPress={handlerKeyPress}
           value={inputMessage}
         />
         <Box m={2}>
