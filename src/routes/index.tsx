@@ -13,7 +13,7 @@ import { Text } from '../pages/Test';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={<Text />} />
+      <Route path='/' element={<Home />} />
       <Route path='/chat/:id' element={<Chat />} />
     </Routes>
   );

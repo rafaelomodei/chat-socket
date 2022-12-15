@@ -4,6 +4,7 @@ import { ChakraProvider, Container, Flex } from '@chakra-ui/react';
 import { theme } from './utils/themes';
 import AppRoutes from './routes';
 import { ContactList } from './components/organisms/contactList';
+import { AuthUser } from './components/organisms/authUser';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <GlobalStyle />
       <div className='appContainer'>
         {/* <ContactList /> */}
+        <AuthUser />
         <AppRoutes />
       </div>
     </ChakraProvider>
