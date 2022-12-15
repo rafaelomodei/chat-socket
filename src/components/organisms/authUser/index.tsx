@@ -17,12 +17,13 @@ import { useMessage } from '../../../hooks/message';
 import { FormsAuthUser } from '../formsAuthUser';
 
 export const AuthUser = () => {
-  const { contacts, getAllContacts } = useContact();
   const { messages } = useMessage();
+  const { contacts, getAllContacts } = useContact();
 
   useEffect(() => {
+    console.info('useEffect::getAllContacts');
     getAllContacts();
-  }, [getAllContacts]);
+  }, []);
 
   return (
     <ContainerContactList>

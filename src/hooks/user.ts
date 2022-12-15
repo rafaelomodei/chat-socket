@@ -31,17 +31,20 @@ export const useUser = () => {
   }, []);
 
   const loginUser = useCallback(async ({ email, password }: ILoginUser) => {
+    console.info('loginUser');
     socket.emit('login', { email, password });
   }, []);
 
   const createdUser = useCallback(async () => {
     socket.on('register', (data: any) => {
+      console.info('createdUser');
       if (data.status === 200) setIsCreatedUser(true);
     });
   }, []);
 
   const registerUser = useCallback(
     async ({ email, password, name }: IRegisterUser) => {
+      console.info('registerUser');
       socket.emit('register', { email, password, name });
     },
     []

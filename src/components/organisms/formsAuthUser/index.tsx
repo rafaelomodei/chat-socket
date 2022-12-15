@@ -10,6 +10,7 @@ import { theme } from '../../../utils/themes';
 import { InputForms } from '../../molecules/inputForms';
 import { Button } from './styled';
 import { useUser } from '../../../hooks/user';
+import { useContact } from '../../../hooks/contact';
 interface IFormsAuthUser {
   type: 'LOGIN' | 'CREATE';
 }
@@ -38,7 +39,7 @@ export const FormsAuthUser = ({ type }: IFormsAuthUser) => {
     loginUser({ email, password });
     setTimeout(() => {
       window.location.reload();
-    }, 250);
+    }, 350);
   };
   return (
     <FormControl>

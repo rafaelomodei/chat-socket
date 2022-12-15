@@ -61,9 +61,9 @@ export const Drawer = ({ buttonRef, isOpen, onClose }: IDrawer) => {
             </Heading>
           </Flex>
           {contacts?.map((contact) => (
-            <Box key={contact.ip} width='100%'>
+            <Box key={contact.address} width='100%'>
               <CardContact
-                ip={contact.ip}
+                ip={contact.address}
                 name={contact.name}
                 size={Size.SM}
                 trash={true}

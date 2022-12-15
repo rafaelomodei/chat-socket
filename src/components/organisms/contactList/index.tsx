@@ -26,8 +26,10 @@ export const ContactList = () => {
   // const { messages } = useMessage();
 
   useEffect(() => {
+    console.info('useEffect::getAllContacts');
     getAllContacts();
-  }, [getAllContacts]);
+    console.info('contacts', contacts);
+  });
 
   return (
     <ContainerContactList>
@@ -88,8 +90,8 @@ export const ContactList = () => {
                 <Divider mt={2} borderColor={theme.colors.brand.tertiary} />
               </Box>
               {contacts?.map((contact) => (
-                <Box key={contact.ip} width='100%'>
-                  <CardContact ip={contact.ip} name={contact.name} />
+                <Box key={contact.address} width='100%'>
+                  <CardContact ip={contact.address} name={contact.name} />
                   <Divider borderColor={theme.colors.brand.tertiary} />
                 </Box>
               ))}
