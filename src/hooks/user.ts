@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import socket from "../services/api";
+import { useCallback } from 'react';
+import socket from '../services/api';
 
 interface IUser {
   id: string;
@@ -13,9 +13,16 @@ interface ILoginUser {
 export const useUser = () => {
   const profile: IUser = { id: socket.id };
 
-  const loginUser = useCallback(async ({ email, password }: ILoginUser) => {
-    console.info("Enviando dados::email: ", email, " | password: ", password);
-    socket.emit("login", { email, password });
+  socket.on('logado', (data: any) => {});
+
+  const loggedUser = useCallback(async () => {
+    socket.on('login', (data: any) => {
+      console.info('login:: ', data);
+    });
   }, []);
-  return { profile, loginUser };
+
+  const loginUser = useCallback(async ({ email, password }: ILoginUser) => {
+    socket.emit('login', { email, password });
+  }, []);
+  return { profile, loginUser, loggedUser };
 };
