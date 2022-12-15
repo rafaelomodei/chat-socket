@@ -23,7 +23,7 @@ import { useMessage } from '../../../hooks/message';
 
 export const ContactList = () => {
   const { contacts, getAllContacts } = useContact();
-  const { messages } = useMessage();
+  // const { messages } = useMessage();
 
   useEffect(() => {
     getAllContacts();
@@ -67,7 +67,7 @@ export const ContactList = () => {
                 // height='60vh'
                 width='100%'
               >
-                {messages?.map((message) => (
+                {/* {messages?.map((message) => (
                   <div key={message.ip}>
                     <CardContact
                       ip={message.ip}
@@ -77,7 +77,7 @@ export const ContactList = () => {
                     />
                     <Divider borderColor={theme.colors.brand.tertiary} />
                   </div>
-                ))}
+                ))} */}
               </Flex>
             </TabPanel>
             <TabPanel overflow='auto' height='100%'>
