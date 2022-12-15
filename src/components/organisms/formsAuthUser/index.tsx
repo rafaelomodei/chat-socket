@@ -15,26 +15,48 @@ interface IFormsAuthUser {
 }
 
 export const FormsAuthUser = ({ type }: IFormsAuthUser) => {
+  const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const { loginUser, loggedUser } = useUser();
+  const { loginUser, loggedUser, registerUser, createdUser } = useUser();
 
   useEffect(() => {
     loggedUser();
   }, []);
 
+  useEffect(() => {
+    createdUser();
+  }, []);
+
   const isLogin = type === 'LOGIN';
 
+  const handleInputName = (event: any) => setName(event.target.value);
   const handleInputEmail = (event: any) => setEmail(event.target.value);
-
   const handleInputPassword = (event: any) => setPassword(event.target.value);
+  const handleLogin = () => {
+    loginUser({ email, password });
+    setTimeout(() => {
+      window.location.reload();
+    }, 250);
+  };
   return (
     <FormControl>
       <Container mb={8}>
         <Heading size='lg'>{isLogin ? 'Login' : 'Criar conta'}</Heading>
         <Divider mt={2} borderColor={theme.colors.brand.tertiary} />
       </Container>
+
+      {!isLogin && (
+        <Box mb={8}>
+          <InputForms
+            label='Nome'
+            placeholder='Informe o seu nome'
+            onChange={handleInputName}
+          />
+        </Box>
+      )}
+
       <Box mb={8}>
         <InputForms
           label='E-mail'
@@ -53,8 +75,7 @@ export const FormsAuthUser = ({ type }: IFormsAuthUser) => {
       <Container mb={8}>
         <Button
           onClick={() => {
-            console.info('clicando');
-            loginUser({ email, password });
+            isLogin ? handleLogin() : registerUser({ email, password, name });
           }}
         >
           {isLogin ? 'Entrar' : 'Criar conta'}

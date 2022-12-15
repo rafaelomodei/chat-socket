@@ -25,7 +25,11 @@ const Chat = () => {
         name='Amantes da Estrada'
         img='https://lirp.cdn-website.com/9d12ecc7/dms3rep/multi/opt/caminhao-carreta-1920w.jpg'
       />
-      {loadedMessages ? <Loading h='75%'/> : <ChatContent messages={messages} />}
+      {loadedMessages ? (
+        <Loading h='75%' />
+      ) : (
+        <ChatContent messages={messages} />
+      )}
       <InputMessage />
     </Container>
   );
