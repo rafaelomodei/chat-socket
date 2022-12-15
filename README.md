@@ -1,5 +1,11 @@
 # Chat socket
 
+Trabalho desenvolvido por
+Rafael Geovani Omodei
+Gustavo Silvar Quieregato
+Ana Paula Capeletti
+Jeferson Carlos Martin
+
 Você foi contratado para o desenvolvimento de um sistema para comunicação interpessoal: o WhatsUT. Tal sistema precisa atender os seguintes requisitos:
 
 ### Rquisitos do trabalho
