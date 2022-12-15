@@ -1,10 +1,8 @@
-import Home from './pages/home';
-import { GlobalStyle } from './styles/global';
 import { ChakraProvider } from '@chakra-ui/react';
-import { theme } from './utils/themes';
-import AppRoutes from './routes';
-import { ContactList } from './components/organisms/contactList';
 import { AuthUser } from './components/organisms/authUser';
+import AppRoutes from './routes';
+import { GlobalStyle } from './styles/global';
+import { theme } from './utils/themes';
 
 
 function App() {

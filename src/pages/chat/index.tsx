@@ -16,7 +16,6 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    console.info('Render');
     solicitationMessages();
   }, []);
 
