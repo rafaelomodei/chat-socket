@@ -4,13 +4,16 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from './utils/themes';
 import AppRoutes from './routes';
 import { ContactList } from './components/organisms/contactList';
+import { AuthUser } from './components/organisms/authUser';
+
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <GlobalStyle />
       <div className='appContainer'>
-        <ContactList />
+        {/* <ContactList /> */}
+        <AuthUser/>
         <AppRoutes />
       </div>
     </ChakraProvider>
