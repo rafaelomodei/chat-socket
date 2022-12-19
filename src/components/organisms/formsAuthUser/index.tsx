@@ -5,6 +5,7 @@ import {
   Divider,
   FormControl,
   Heading,
+  useToast,
 } from '@chakra-ui/react';
 import { theme } from '../../../utils/themes';
 import { InputForms } from '../../molecules/inputForms';
@@ -19,15 +20,12 @@ export const FormsAuthUser = ({ type }: IFormsAuthUser) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
-  const { loginUser, loggedUser, registerUser, createdUser } = useUser();
+  const toast = useToast();
+  const { statusUser, loginUser, loggedUser, registerUser, createdUser } =
+    useUser();
 
   useEffect(() => {
     loggedUser();
-  }, []);
-
-  useEffect(() => {
-    createdUser();
   }, []);
 
   const isLogin = type === 'LOGIN';
@@ -37,9 +35,12 @@ export const FormsAuthUser = ({ type }: IFormsAuthUser) => {
   const handleInputPassword = (event: any) => setPassword(event.target.value);
   const handleLogin = () => {
     loginUser({ email, password });
-    setTimeout(() => {
-      window.location.reload();
-    }, 350);
+    loggedUser();
+  };
+
+  const handleRegister = () => {
+    registerUser({ email, password, name });
+    createdUser();
   };
   return (
     <FormControl>
@@ -76,7 +77,7 @@ export const FormsAuthUser = ({ type }: IFormsAuthUser) => {
       <Container mb={8}>
         <Button
           onClick={() => {
-            isLogin ? handleLogin() : registerUser({ email, password, name });
+            isLogin ? handleLogin() : handleRegister();
           }}
         >
           {isLogin ? 'Entrar' : 'Criar conta'}

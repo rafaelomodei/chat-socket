@@ -8,17 +8,17 @@ import { GlobalStyle } from './styles/global';
 import { theme } from './utils/themes';
 
 function App() {
-  const [isLoggedUser, setIsLoggedUser] = useState(
-    localStorage.getItem('isLoggedUser') ? true : false
-  );
+  const [isLoggedUser, setIsLoggedUser] = useState(false);
 
   useEffect(() => {
-    const log = localStorage.getItem('isLoggedUser');
-    console.info('log ', log);
-    if (log) {
-      setIsLoggedUser(true);
-    }
+    setInterval(() => {
+      const log = localStorage.getItem('isLoggedUser');
+      if (log && log === 'true' && !isLoggedUser) setIsLoggedUser(true);
+      else if (!log || log === 'false') setIsLoggedUser(false);
+    }, 500);
   });
+
+  useEffect(() => console.info('isLoggedUser: ', isLoggedUser), [isLoggedUser]);
 
   return (
     <ChakraProvider theme={theme}>
