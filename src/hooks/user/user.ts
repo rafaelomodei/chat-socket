@@ -1,7 +1,7 @@
 import { useToast } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
 import socket from '../../services/api';
-import { createUserFeedback } from './feedback';
+import { userFeedback } from './feedback';
 
 interface IUser {
   id: string;
@@ -29,7 +29,7 @@ export const useUser = () => {
 
   useEffect(() => {
     if (status) {
-      createUserFeedback.map((feedback) => {
+      userFeedback.map((feedback) => {
         if (feedback.status === status) {
           toast(feedback.toast);
           feedback.fun && feedback.fun();
@@ -46,8 +46,8 @@ export const useUser = () => {
   }, []);
 
   const loginUser = useCallback(async ({ email, password }: ILoginUser) => {
-    console.info('loginUser');
     socket.emit('login', { email, password });
+    sessionStorage.setItem('userEmail', `${email}`);
   }, []);
 
   const createdUser = useCallback(async () => {
@@ -60,7 +60,6 @@ export const useUser = () => {
 
   const registerUser = useCallback(
     async ({ email, password, name }: IRegisterUser) => {
-      console.info('registerUser');
       socket.emit('register', { email, password, name });
     },
     []

@@ -18,7 +18,7 @@ import { MdMessage, MdContacts } from 'react-icons/md';
 import { FormsNewContact } from '../formsNewContact';
 import { FormsNewGroup } from '../formsNewGroup';
 import { useEffect } from 'react';
-import { useContact } from '../../../hooks/contact';
+import { useContact } from '../../../hooks/contact/contact';
 import { useMessage } from '../../../hooks/message';
 
 export const ContactList = () => {
@@ -26,9 +26,9 @@ export const ContactList = () => {
   // const { messages } = useMessage();
 
   useEffect(() => {
-    console.info('useEffect::getAllContacts');
+    // console.info('useEffect::getAllContacts');
     getAllContacts();
-    console.info('contacts', contacts);
+    // console.info('contacts', contacts);
   });
 
   return (
@@ -96,7 +96,7 @@ export const ContactList = () => {
                 </Box>
               ))}
             </TabPanel>
-            <TabPanel>
+            <TabPanel overflow='auto' h='100%'>
               <FormsNewContact />
             </TabPanel>
             <TabPanel>

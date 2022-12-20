@@ -6,7 +6,7 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useContact } from '../../../hooks/contact';
+import { useContact } from '../../../hooks/contact/contact';
 import { theme } from '../../../utils/themes';
 import { InputForms } from '../../molecules/inputForms';
 import { Button } from './styled';
@@ -17,7 +17,7 @@ export const FormsNewContact = () => {
   const [photo, setPhoto] = useState<string>('');
   const [userEmail, setUserEmail] = useState<string>('');
 
-  const { registerContact } = useContact();
+  const { registerContact, registeredContact } = useContact();
   const { contacts, getAllContacts } = useContact();
 
   const handleInputName = (event: any) => setName(event.target.value);
@@ -41,7 +41,7 @@ export const FormsNewContact = () => {
           onChange={handleInputName}
         />
       </Box>
-      <Box mb={16}>
+      <Box mb={8}>
         <InputForms
           label='IP'
           placeholder='Informe o ip'
@@ -59,6 +59,7 @@ export const FormsNewContact = () => {
         <Button
           onClick={() => {
             registerContact({ name, address, photo, userEmail });
+            registeredContact();
             getAllContacts();
           }}
         >

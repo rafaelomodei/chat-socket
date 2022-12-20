@@ -12,7 +12,7 @@ import { FaUserPlus, FaUsers } from 'react-icons/fa';
 import { CgLogIn } from 'react-icons/cg';
 
 import { useEffect } from 'react';
-import { useContact } from '../../../hooks/contact';
+import { useContact } from '../../../hooks/contact/contact';
 import { useMessage } from '../../../hooks/message';
 import { FormsAuthUser } from '../formsAuthUser';
 
@@ -21,7 +21,7 @@ export const AuthUser = () => {
   const { contacts, getAllContacts } = useContact();
 
   useEffect(() => {
-    console.info('useEffect::getAllContacts');
+    // console.info('useEffect::getAllContacts');
     getAllContacts();
   }, []);
 

@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { RefObject, useEffect } from 'react';
 import { FaUsers } from 'react-icons/fa';
-import { useContact } from '../../../hooks/contact';
+import { useContact } from '../../../hooks/contact/contact';
 import { Size } from '../../../utils/helpers';
 import { theme } from '../../../utils/themes';
 import { CardContact } from '../cardContact';

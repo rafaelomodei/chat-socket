@@ -18,8 +18,6 @@ function App() {
     }, 500);
   });
 
-  useEffect(() => console.info('isLoggedUser: ', isLoggedUser), [isLoggedUser]);
-
   return (
     <ChakraProvider theme={theme}>
       <GlobalStyle />

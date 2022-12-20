@@ -6,11 +6,11 @@ interface IResponse {
   fun?: () => void;
 }
 
-export const userFeedback: Array<IResponse> = [
+export const contactFeedback: Array<IResponse> = [
   {
     status: 200,
     toast: {
-      title: 'Usuário cadastrado com sucesso!',
+      title: 'Contato cadastrado com sucesso!',
       description: 'Compartilhe menssagem com seus amigos',
       status: 'success',
       variant: 'solid',
@@ -19,15 +19,12 @@ export const userFeedback: Array<IResponse> = [
         padding: '16px',
       },
     },
-    fun: () => {
-      localStorage.setItem('isLoggedUser', 'true');
-    },
   },
   {
     status: 409,
     toast: {
       title: 'Usuário já cadastrado',
-      description: 'Esse usuário já tem um cadastro',
+      description: 'Esse usuário já existe em sua lista de contato',
       status: 'error',
       variant: 'solid',
       position: 'top-right',
