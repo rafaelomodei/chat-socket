@@ -10,7 +10,7 @@ import {
 import { theme } from '../../../utils/themes';
 import { InputForms } from '../../molecules/inputForms';
 import { Button } from './styled';
-import { useUser } from '../../../hooks/user';
+import { useUser } from '../../../hooks/user/user';
 import { useContact } from '../../../hooks/contact';
 interface IFormsAuthUser {
   type: 'LOGIN' | 'CREATE';
@@ -21,8 +21,7 @@ export const FormsAuthUser = ({ type }: IFormsAuthUser) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const toast = useToast();
-  const { statusUser, loginUser, loggedUser, registerUser, createdUser } =
-    useUser();
+  const { loginUser, loggedUser, registerUser, createdUser } = useUser();
 
   useEffect(() => {
     loggedUser();

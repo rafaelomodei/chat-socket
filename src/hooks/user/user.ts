@@ -1,7 +1,7 @@
 import { useToast } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
-import socket from '../services/api';
-import { createUserFeedback } from './user/feedback';
+import socket from '../../services/api';
+import { createUserFeedback } from './feedback';
 
 interface IUser {
   id: string;
@@ -19,7 +19,7 @@ interface IRegisterUser {
 }
 
 export const useUser = () => {
-  const [statusUser, setStatus] = useState<number>();
+  const [status, setStatus] = useState<number>();
   // const [isLoggedUser, setIsLoggedUser] = useState(false);
   const toast = useToast();
 
@@ -28,8 +28,16 @@ export const useUser = () => {
   const profile: IUser = { id: socket.id };
 
   useEffect(() => {
-    if (statusUser) setStatus(undefined);
-  }, [statusUser]);
+    if (status) {
+      createUserFeedback.map((feedback) => {
+        if (feedback.status === status) {
+          toast(feedback.toast);
+          feedback.fun && feedback.fun();
+        }
+      });
+      setStatus(undefined);
+    }
+  }, [status]);
 
   const loggedUser = useCallback(async () => {
     socket.on('login', (data: any) => {
@@ -44,16 +52,9 @@ export const useUser = () => {
 
   const createdUser = useCallback(async () => {
     socket.on('register', (data: any) => {
-      // if (data.status) {
-      //   setStatus(data.status);
-      // }
-      createUserFeedback.map((feedback) => {
+      if (data.status) {
         setStatus(data.status);
-        if (feedback.status === data.status && statusUser !== data.status) {
-          toast(feedback.toast);
-          feedback.fun && feedback.fun();
-        }
-      });
+      }
     });
   }, []);
 
@@ -66,7 +67,7 @@ export const useUser = () => {
   );
   return {
     profile,
-    statusUser,
+    status,
     isLoggedUser,
     loginUser,
     loggedUser,

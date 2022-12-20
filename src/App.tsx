@@ -2,7 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { AuthUser } from './components/organisms/authUser';
 import { ContactList } from './components/organisms/contactList';
-import { useUser } from './hooks/user';
+import { useUser } from './hooks/user/user';
 import AppRoutes from './routes';
 import { GlobalStyle } from './styles/global';
 import { theme } from './utils/themes';

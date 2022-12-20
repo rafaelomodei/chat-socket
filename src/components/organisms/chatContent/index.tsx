@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useUser } from '../../../hooks/user';
+import { useUser } from '../../../hooks/user/user';
 import { constants } from '../../../utils/constant';
 import { ICardContact } from '../cardContact';
 import { ChatBlock } from '../chatBlock';
