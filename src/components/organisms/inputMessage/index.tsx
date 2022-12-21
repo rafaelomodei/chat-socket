@@ -7,16 +7,24 @@ import { useEffect, useState } from 'react';
 import { useMessage } from '../../../hooks/message';
 import socket from '../../../services/api';
 
-export const InputMessage = () => {
+interface InputMessage {
+  keyChat: string;
+}
+
+export const InputMessage = ({ keyChat }: InputMessage) => {
   const [inputMessage, setInputMessage] = useState<string>('');
 
   const { sendMessage, joinChatPrivate } = useMessage();
+
+  useEffect(() => {
+    console.info('Input:key: ', keyChat);
+  }, [keyChat]);
 
   const handleInputMessage = (event: any) =>
     setInputMessage(event.target.value);
 
   const handleSendMessage = () => {
-    sendMessage(inputMessage);
+    sendMessage(inputMessage, keyChat);
     setInputMessage('');
   };
 
@@ -37,7 +45,7 @@ export const InputMessage = () => {
           <IconButton
             aria-label='Settings'
             icon={<ImAttachment />}
-            onClick={() => joinChatPrivate('e43e5f8d-56ef-4af2-a218-c7fe4303f3b3')}
+            onClick={() => joinChatPrivate(keyChat)}
           />
         </Box>
         <Divider h='60%' orientation='vertical' borderColor='white' />

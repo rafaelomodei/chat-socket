@@ -55,7 +55,13 @@ export const FormsNewContact = () => {
       <Container mb={8}>
         <Button
           onClick={() => {
-            registerContact({ name, address, photo, userEmail });
+            registerContact({
+              name,
+              address,
+              photo,
+              userEmail,
+              listKeysContact: [],
+            });
             registeredContact();
             solicitationAllContacts();
           }}

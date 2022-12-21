@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ChatContent } from '../../components/organisms/chatContent';
 import { InputMessage } from '../../components/organisms/inputMessage';
 import { Loading } from '../../components/organisms/loading';
@@ -17,6 +17,7 @@ interface IChat {
 }
 
 const Chat = ({ user }: IChat) => {
+  const [keyChat, setKeyChat] = useState<string>('');
   const { messages, loadedMessages, getAllMessages, solicitationMessages } =
     useMessage();
 
@@ -28,13 +29,27 @@ const Chat = ({ user }: IChat) => {
   });
 
   useEffect(() => {
-    console.info('contact: ', contact)
+    console.info('Chat:keyChat: ', keyChat);
+  }, [keyChat]);
+
+  const handleKey = () => {
+    const userEmail = sessionStorage.getItem('userEmail');
+    const key = contact?.listKeysContact.find((item) => item.to === userEmail);
+
+    key?.key && setKeyChat(key?.key);
+    console.info('key:: ', key?.key);
+    console.info('userEmail:: ', userEmail);
+  };
+
+  useEffect(() => {
+    console.info('contact: ', contact);
+    handleKey();
   }, [contact]);
 
   return (
     <Container>
       <NavBarChat
-        name={contact?.name || 'F'}
+        name={contact?.name || 'User não encontrado'}
         img='https://lirp.cdn-website.com/9d12ecc7/dms3rep/multi/opt/caminhao-carreta-1920w.jpg'
       />
       {loadedMessages ? (
@@ -42,7 +57,7 @@ const Chat = ({ user }: IChat) => {
       ) : (
         <ChatContent messages={messages} />
       )}
-      <InputMessage />
+      <InputMessage keyChat={keyChat} />
     </Container>
   );
 };

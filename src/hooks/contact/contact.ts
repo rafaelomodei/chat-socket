@@ -4,11 +4,16 @@ import { ICardContact } from '../../components/organisms/cardContact';
 import socket from '../../services/api';
 import { contactFeedback } from './feedback';
 
+export interface IKeysContact {
+  key: string;
+  to: string;
+}
 export default interface IContact {
   name: string;
   address: string;
   photo: string;
   userEmail: string;
+  listKeysContact: Array<IKeysContact>;
 }
 
 interface ICreateContact extends IContact {
