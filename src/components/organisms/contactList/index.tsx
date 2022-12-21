@@ -10,6 +10,7 @@ import {
   Tabs,
 } from '@chakra-ui/react';
 import { theme } from '../../../utils/themes';
+
 import { CardContact } from '../cardContact';
 import { ContainerContactList, TabItem } from './styled';
 import { FaUserPlus, FaUsers } from 'react-icons/fa';
@@ -17,11 +18,15 @@ import { MdMessage, MdContacts } from 'react-icons/md';
 
 import { FormsNewContact } from '../formsNewContact';
 import { FormsNewGroup } from '../formsNewGroup';
-import { useEffect } from 'react';
-import { useContact } from '../../../hooks/contact/contact';
+import { Dispatch, useEffect } from 'react';
+import IContact, { useContact } from '../../../hooks/contact/contact';
 import { useMessage } from '../../../hooks/message';
 
-export const ContactList = () => {
+interface IContactList {
+  getContact: Dispatch<React.SetStateAction<string | undefined>>;
+}
+
+export const ContactList = ({ getContact }: IContactList) => {
   const { contacts, getAllContacts, solicitationAllContacts } = useContact();
   // const { messages } = useMessage();
 
@@ -36,7 +41,12 @@ export const ContactList = () => {
   return (
     <ContainerContactList>
       <Container margin={0} width='100%' height='73%' padding={0}>
-        <Heading size='xl' p={4}>
+        <Heading
+          size='xl'
+          p={4}
+          role='presentation'
+          onClick={() => getContact(undefined)}
+        >
           Chat socket
         </Heading>
 
@@ -92,8 +102,12 @@ export const ContactList = () => {
                 <Divider mt={2} borderColor={theme.colors.brand.tertiary} />
               </Box>
               {contacts?.map((contact) => (
-                <Box key={contact.address} width='100%'>
-                  <CardContact ip={contact.address} name={contact.name} />
+                <Box key={contact.userEmail} width='100%'>
+                  <CardContact
+                    userEmail={contact.userEmail}
+                    name={contact.name}
+                    getContact={getContact}
+                  />
                   <Divider borderColor={theme.colors.brand.tertiary} />
                 </Box>
               ))}

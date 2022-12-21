@@ -4,6 +4,7 @@ import { ChatContent } from '../../components/organisms/chatContent';
 import { InputMessage } from '../../components/organisms/inputMessage';
 import { Loading } from '../../components/organisms/loading';
 import { NavBarChat } from '../../components/organisms/navBarChat/indext';
+import { useContact } from '../../hooks/contact/contact';
 import { useMessage } from '../../hooks/message';
 import { Container } from './styled';
 
@@ -19,18 +20,21 @@ const Chat = ({ user }: IChat) => {
   const { messages, loadedMessages, getAllMessages, solicitationMessages } =
     useMessage();
 
+  const { contact, getContactInfo } = useContact();
+
   useEffect(() => {
     getAllMessages();
+    getContactInfo();
   });
 
   useEffect(() => {
-    solicitationMessages();
-  }, []);
+    console.info('contact: ', contact)
+  }, [contact]);
 
   return (
     <Container>
       <NavBarChat
-        name={user.name}
+        name={contact?.name || 'F'}
         img='https://lirp.cdn-website.com/9d12ecc7/dms3rep/multi/opt/caminhao-carreta-1920w.jpg'
       />
       {loadedMessages ? (

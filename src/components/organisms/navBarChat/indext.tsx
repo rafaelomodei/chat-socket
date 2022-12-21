@@ -26,7 +26,7 @@ export const NavBarChat = ({ name, img }: INavBarChat) => {
         icon={<IoSettings />}
         onClick={() => onOpen()}
       />
-      <Drawer buttonRef={buttonSettings} isOpen={isOpen} onClose={onClose} />
+      {/* <Drawer buttonRef={buttonSettings} isOpen={isOpen} onClose={onClose} /> */}
     </ContainerNavBarChat>
   );
 };

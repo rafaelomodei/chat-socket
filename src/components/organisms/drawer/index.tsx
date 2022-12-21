@@ -11,7 +11,7 @@ import {
   Heading,
   useDisclosure,
 } from '@chakra-ui/react';
-import { RefObject, useEffect } from 'react';
+import { Dispatch, RefObject, useEffect } from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { useContact } from '../../../hooks/contact/contact';
 import { Size } from '../../../utils/helpers';
@@ -24,9 +24,10 @@ interface IDrawer {
   buttonRef: RefObject<HTMLElement>;
   isOpen: boolean;
   onClose: () => void;
+  getContact: Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-export const Drawer = ({ buttonRef, isOpen, onClose }: IDrawer) => {
+export const Drawer = ({ buttonRef, isOpen, onClose, getContact }: IDrawer) => {
   const { contacts } = useContact();
   const {
     isOpen: isOpenModal,
@@ -59,10 +60,11 @@ export const Drawer = ({ buttonRef, isOpen, onClose }: IDrawer) => {
           {contacts?.map((contact) => (
             <Box key={contact.address} width='100%'>
               <CardContact
-                ip={contact.address}
+                userEmail={contact.userEmail}
                 name={contact.name}
                 size={Size.SM}
                 trash={true}
+                getContact={getContact}
               />
               <Divider borderColor={theme.colors.brand.tertiary} />
             </Box>

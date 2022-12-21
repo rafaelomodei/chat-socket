@@ -4,21 +4,23 @@ import { ICardContact } from '../../components/organisms/cardContact';
 import socket from '../../services/api';
 import { contactFeedback } from './feedback';
 
-interface IContacts {
+export default interface IContact {
   name: string;
   address: string;
   photo: string;
   userEmail: string;
 }
 
-interface ICreateContact extends IContacts {
+interface ICreateContact extends IContact {
   userEmail: string;
 }
 
 export const useContact = () => {
   const [status, setStatus] = useState<number>();
 
-  const [contacts, setContacts] = useState<Array<IContacts>>([]);
+  const [contacts, setContacts] = useState<Array<IContact>>([]);
+  const [contact, setContact] = useState<IContact>();
+
   const toast = useToast();
 
   useEffect(() => {
@@ -33,10 +35,20 @@ export const useContact = () => {
     }
   }, [status]);
 
+  const getContactInfo = useCallback(async () => {
+    socket.on('getContact', (data) => {
+      if (data.user) setContact(data.user);
+    });
+  }, []);
+
+  const getContact = useCallback(async (email: string) => {
+    console.info('email: ', email);
+
+    socket.emit('getContact', { email: email });
+  }, []);
+
   const getAllContacts = useCallback(async () => {
     socket.on('getAllList', (data) => {
-      console.info('RECEBENDO CONTATO  ---- >>>>');
-
       // console.info('getAllList: ', data);
       if (data.listContact.length > 0) setContacts(data.listContact);
     });
@@ -45,7 +57,8 @@ export const useContact = () => {
   const solicitationAllContacts = useCallback(async () => {
     const userEmail = sessionStorage.getItem('userEmail');
     console.info('SOLICITANDO CONTATO <<< ----');
-    socket.emit('getAllList', { email: userEmail });
+    const userAuth = sessionStorage.getItem('userEmail');
+    socket.emit('getAllList', { email: userEmail, from: userAuth });
   }, []);
 
   const registeredContact = useCallback(async () => {
@@ -83,7 +96,10 @@ export const useContact = () => {
   );
 
   return {
+    contact,
     contacts,
+    getContact,
+    getContactInfo,
     getAllContacts,
     solicitationAllContacts,
     registerContact,

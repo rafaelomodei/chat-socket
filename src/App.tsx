@@ -2,12 +2,18 @@ import { ChakraProvider, Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { AuthUser } from './components/organisms/authUser';
 import { ContactList } from './components/organisms/contactList';
-import { useContact } from './hooks/contact/contact';
+import IContact, { useContact } from './hooks/contact/contact';
 import Chat from './pages/chat';
 import Home from './pages/home';
 
 function App() {
   const [isLoggedUser, setIsLoggedUser] = useState(false);
+  const [contactClicked, setContactClicked] = useState<string>();
+
+  const { getContact } = useContact();
+  useEffect(() => {
+    contactClicked && getContact(contactClicked);
+  }, [contactClicked]);
 
   useEffect(() => {
     setInterval(() => {
@@ -19,8 +25,16 @@ function App() {
 
   return (
     <Flex className='appContainer'>
-      {isLoggedUser ? <ContactList /> : <AuthUser />}
-      <Chat user={{ name: 'Jão', email: 'jão@teste.com' }} />
+      {isLoggedUser ? (
+        <ContactList getContact={setContactClicked} />
+      ) : (
+        <AuthUser />
+      )}
+      {contactClicked ? (
+        <Chat user={{ name: 'Jão', email: 'jão@teste.com' }} />
+      ) : (
+        <Home />
+      )}
     </Flex>
   );
 }

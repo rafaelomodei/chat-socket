@@ -21,10 +21,11 @@ export const useMessage = () => {
   }, []);
 
   const sendMessage = useCallback(async (message: string) => {
+    const userAuth = sessionStorage.getItem('userEmail');
     socket.emit('chatPrivate', {
       content: message,
       to: 'b5bcc896-b3e2-4e01-882a-f1380b85b0ff',
-      from: 'from vazio',
+      from: `${userAuth}`,
     });
   }, []);
 
