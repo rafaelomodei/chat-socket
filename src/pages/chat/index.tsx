@@ -7,13 +7,21 @@ import { NavBarChat } from '../../components/organisms/navBarChat/indext';
 import { useMessage } from '../../hooks/message';
 import { Container } from './styled';
 
-const Chat = () => {
+interface IContact {
+  name: string;
+  email: string;
+}
+interface IChat {
+  user: IContact;
+}
+
+const Chat = ({ user }: IChat) => {
   const { messages, loadedMessages, getAllMessages, solicitationMessages } =
     useMessage();
 
   useEffect(() => {
     getAllMessages();
-  }, []);
+  });
 
   useEffect(() => {
     solicitationMessages();
@@ -22,7 +30,7 @@ const Chat = () => {
   return (
     <Container>
       <NavBarChat
-        name='Amantes da Estrada'
+        name={user.name}
         img='https://lirp.cdn-website.com/9d12ecc7/dms3rep/multi/opt/caminhao-carreta-1920w.jpg'
       />
       {loadedMessages ? (

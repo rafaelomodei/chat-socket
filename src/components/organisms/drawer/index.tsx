@@ -27,16 +27,12 @@ interface IDrawer {
 }
 
 export const Drawer = ({ buttonRef, isOpen, onClose }: IDrawer) => {
-  const { contacts, getAllContacts } = useContact();
+  const { contacts } = useContact();
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
     onClose: onCloseModal,
   } = useDisclosure();
-
-  useEffect(() => {
-    getAllContacts();
-  }, [getAllContacts]);
 
   return (
     <DrawerChakra

@@ -22,14 +22,16 @@ import { useContact } from '../../../hooks/contact/contact';
 import { useMessage } from '../../../hooks/message';
 
 export const ContactList = () => {
-  const { contacts, getAllContacts } = useContact();
+  const { contacts, getAllContacts, solicitationAllContacts } = useContact();
   // const { messages } = useMessage();
 
   useEffect(() => {
-    // console.info('useEffect::getAllContacts');
     getAllContacts();
-    // console.info('contacts', contacts);
   });
+
+  useEffect(() => {
+    solicitationAllContacts();
+  }, []);
 
   return (
     <ContainerContactList>

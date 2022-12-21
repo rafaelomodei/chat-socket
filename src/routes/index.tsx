@@ -1,16 +1,19 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Chat from '../pages/chat';
-import Home from '../pages/home';
+import { lazy, Suspense } from 'react';
+import { Navigate, Route, Router, Routes } from 'react-router-dom';
+import App from '../App';
+import { Loading } from '../components/organisms/loading';
 
-// const home = lazy(() => import('../pages/home'));
+const Home = lazy(() => import('../pages/home'));
+const Chat = lazy(() => import('../pages/chat'));
 
 const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/chat/:id' element={<Chat />} />
-      <Route path='*' element={<Navigate to='/' />} />
-    </Routes>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route path='/' element={<App />} />
+        <Route path='*' element={<Navigate to='/' />} />
+      </Routes>
+    </Suspense>
   );
 };
 

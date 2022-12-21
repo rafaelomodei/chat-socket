@@ -8,6 +8,7 @@ interface IContacts {
   name: string;
   address: string;
   photo: string;
+  userEmail: string;
 }
 
 interface ICreateContact extends IContacts {
@@ -34,9 +35,17 @@ export const useContact = () => {
 
   const getAllContacts = useCallback(async () => {
     socket.on('getAllList', (data) => {
-      console.info('getAllList: ', data);
-      if (data.listContact.length > 0) setContacts(data);
+      console.info('RECEBENDO CONTATO  ---- >>>>');
+
+      // console.info('getAllList: ', data);
+      if (data.listContact.length > 0) setContacts(data.listContact);
     });
+  }, []);
+
+  const solicitationAllContacts = useCallback(async () => {
+    const userEmail = sessionStorage.getItem('userEmail');
+    console.info('SOLICITANDO CONTATO <<< ----');
+    socket.emit('getAllList', { email: userEmail });
   }, []);
 
   const registeredContact = useCallback(async () => {
@@ -73,5 +82,11 @@ export const useContact = () => {
     []
   );
 
-  return { contacts, getAllContacts, registerContact, registeredContact };
+  return {
+    contacts,
+    getAllContacts,
+    solicitationAllContacts,
+    registerContact,
+    registeredContact,
+  };
 };

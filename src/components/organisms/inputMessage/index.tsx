@@ -10,7 +10,7 @@ import socket from '../../../services/api';
 export const InputMessage = () => {
   const [inputMessage, setInputMessage] = useState<string>('');
 
-  const { sendMessage } = useMessage();
+  const { sendMessage, joinChatPrivate } = useMessage();
 
   const handleInputMessage = (event: any) =>
     setInputMessage(event.target.value);
@@ -37,7 +37,7 @@ export const InputMessage = () => {
           <IconButton
             aria-label='Settings'
             icon={<ImAttachment />}
-            onClick={() => console.log('enviando mensagem...')}
+            onClick={() => joinChatPrivate('e43e5f8d-56ef-4af2-a218-c7fe4303f3b3')}
           />
         </Box>
         <Divider h='60%' orientation='vertical' borderColor='white' />

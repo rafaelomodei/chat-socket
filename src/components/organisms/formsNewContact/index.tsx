@@ -18,16 +18,13 @@ export const FormsNewContact = () => {
   const [userEmail, setUserEmail] = useState<string>('');
 
   const { registerContact, registeredContact } = useContact();
-  const { contacts, getAllContacts } = useContact();
+  const { contacts, solicitationAllContacts } = useContact();
 
   const handleInputName = (event: any) => setName(event.target.value);
   const handleInputAddress = (event: any) => setAddress(event.target.value);
   const handleInputPhoto = (event: any) => setPhoto(event.target.value);
   const handleInputEmail = (event: any) => setUserEmail(event.target.value);
 
-  useEffect(() => {
-    getAllContacts();
-  });
   return (
     <FormControl>
       <Container mb={8}>
@@ -60,7 +57,7 @@ export const FormsNewContact = () => {
           onClick={() => {
             registerContact({ name, address, photo, userEmail });
             registeredContact();
-            getAllContacts();
+            solicitationAllContacts();
           }}
         >
           Adicionar novo contato

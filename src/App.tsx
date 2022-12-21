@@ -1,11 +1,10 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Flex } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { AuthUser } from './components/organisms/authUser';
 import { ContactList } from './components/organisms/contactList';
-import { useUser } from './hooks/user/user';
-import AppRoutes from './routes';
-import { GlobalStyle } from './styles/global';
-import { theme } from './utils/themes';
+import { useContact } from './hooks/contact/contact';
+import Chat from './pages/chat';
+import Home from './pages/home';
 
 function App() {
   const [isLoggedUser, setIsLoggedUser] = useState(false);
@@ -19,13 +18,10 @@ function App() {
   });
 
   return (
-    <ChakraProvider theme={theme}>
-      <GlobalStyle />
-      <div className='appContainer'>
-        {isLoggedUser ? <ContactList /> : <AuthUser />}
-        <AppRoutes />
-      </div>
-    </ChakraProvider>
+    <Flex className='appContainer'>
+      {isLoggedUser ? <ContactList /> : <AuthUser />}
+      <Chat user={{ name: 'Jão', email: 'jão@teste.com' }} />
+    </Flex>
   );
 }
 

@@ -61,6 +61,7 @@ export const useUser = () => {
   const registerUser = useCallback(
     async ({ email, password, name }: IRegisterUser) => {
       socket.emit('register', { email, password, name });
+      sessionStorage.setItem('userEmail', `${email}`);
     },
     []
   );

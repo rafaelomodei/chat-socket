@@ -14,13 +14,25 @@ export const useMessage = () => {
   }, []);
 
   const getAllMessages = useCallback(async () => {
-    socket.on('getMessages', (data) => {
-      if (data.length > 0) setMessages(data);
+    socket.on('chatPrivate', (data) => {
+      console.info('chatPrivate:: ', data);
+      if (data.content) setMessages([{ messages: [data.content] }]);
     });
   }, []);
 
   const sendMessage = useCallback(async (message: string) => {
-    socket.emit('chat', { messages: [message] });
+    socket.emit('chatPrivate', {
+      content: message,
+      to: 'b5bcc896-b3e2-4e01-882a-f1380b85b0ff',
+      from: 'from vazio',
+    });
+  }, []);
+
+  const joinChatPrivate = useCallback(async (to: string) => {
+    console.info('Juntando ao contato: ', to);
+    socket.emit('joinChatPrivate', {
+      to,
+    });
   }, []);
 
   return {
@@ -29,5 +41,6 @@ export const useMessage = () => {
     sendMessage,
     getAllMessages,
     solicitationMessages,
+    joinChatPrivate,
   };
 };

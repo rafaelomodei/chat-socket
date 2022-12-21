@@ -47,7 +47,7 @@ export const AuthUser = () => {
             <TabPanel>
               <FormsAuthUser type='LOGIN' />
             </TabPanel>
-            <TabPanel>
+            <TabPanel overflow='auto' bg='red'>
               <FormsAuthUser type='CREATE' />
             </TabPanel>
           </TabPanels>
