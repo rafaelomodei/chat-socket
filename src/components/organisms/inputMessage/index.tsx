@@ -17,7 +17,7 @@ export const InputMessage = ({ keyChat }: InputMessage) => {
   const { sendMessage, joinChatPrivate } = useMessage();
 
   useEffect(() => {
-    console.info('Input:key: ', keyChat);
+    joinChatPrivate(keyChat);
   }, [keyChat]);
 
   const handleInputMessage = (event: any) =>
@@ -45,7 +45,7 @@ export const InputMessage = ({ keyChat }: InputMessage) => {
           <IconButton
             aria-label='Settings'
             icon={<ImAttachment />}
-            onClick={() => joinChatPrivate(keyChat)}
+            onClick={() => console.info('Arquivo')}
           />
         </Box>
         <Divider h='60%' orientation='vertical' borderColor='white' />

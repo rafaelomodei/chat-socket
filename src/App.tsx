@@ -10,9 +10,13 @@ function App() {
   const [isLoggedUser, setIsLoggedUser] = useState(false);
   const [contactClicked, setContactClicked] = useState<string>();
 
-  const { getContact } = useContact();
+  const { contact, getContact, getContactMessage } = useContact();
   useEffect(() => {
-    contactClicked && getContact(contactClicked);
+    console.info('useEffect::contactClicked', contactClicked);
+    if (contactClicked !== 'GROUP') {
+      contactClicked && getContact(contactClicked);
+      contactClicked && getContactMessage(contactClicked);
+    }
   }, [contactClicked]);
 
   useEffect(() => {
@@ -30,11 +34,7 @@ function App() {
       ) : (
         <AuthUser />
       )}
-      {contactClicked ? (
-        <Chat user={{ name: 'Jão', email: 'jão@teste.com' }} />
-      ) : (
-        <Home />
-      )}
+      {contactClicked ? <Chat /> : <Home />}
     </Flex>
   );
 }

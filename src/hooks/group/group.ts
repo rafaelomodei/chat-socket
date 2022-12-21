@@ -1,6 +1,5 @@
 import { useToast } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
-import { ICardContact } from '../../components/organisms/cardContact';
 import socket from '../../services/api';
 import { contactFeedback } from './feedback';
 
@@ -20,7 +19,7 @@ interface ICreateContact {
   userEmail: string;
 }
 
-export const useContact = () => {
+export const useGroup = () => {
   const [status, setStatus] = useState<number>();
 
   const [contacts, setContacts] = useState<Array<IContact>>([]);
@@ -79,45 +78,22 @@ export const useContact = () => {
     socket.emit('getAllList', { email: userEmail, from: userAuth });
   }, []);
 
-  const registeredContact = useCallback(async () => {
-    socket.on('registerContact', (data) => {
-      if (data.status) {
-        setStatus(data.status);
-      }
-    });
-  }, []);
 
-  const registerContact = useCallback(async ({ userEmail }: ICreateContact) => {
-    const userAuth = sessionStorage.getItem('userEmail');
-    if (!userAuth || (userAuth && !userAuth.length))
-      return toast({
-        title: 'Não foi possível concluir o cadastro',
-        description: 'Tente novamente mais tarde',
-        status: 'error',
-        variant: 'solid',
-        position: 'top-right',
-        containerStyle: {
-          padding: '16px',
-        },
-      });
+  const joinGroupPublic = useCallback(async () => {
+    console.info('joinGroupPublic:: ');
 
-    socket.emit('registerContact', {
-      photo: '',
-      userEmail,
-      userAuth,
-    });
+    socket.emit('joinGroupPublic');
   }, []);
 
   return {
     contact,
     contacts,
-    getContact,
-    getContactToken,
-    getContactMessage,
-    getContactInfo,
-    getAllContacts,
-    solicitationAllContacts,
-    registerContact,
-    registeredContact,
+    // getContact,
+    // getContactToken,
+    // getContactMessage,
+    // getContactInfo,
+    // getAllContacts,
+    // solicitationAllContacts,
+    joinGroupPublic,
   };
 };

@@ -1,5 +1,6 @@
 import { Avatar, Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { MutableRefObject, useRef } from 'react';
+import { ETypeChat } from '../chatContent';
 import { Container, Message } from './styled';
 
 interface IChatBlock {
@@ -8,6 +9,7 @@ interface IChatBlock {
   timeMessageSend: string;
   messages: string[];
   img?: string;
+  type: ETypeChat;
 }
 
 export const ChatBlock = ({
@@ -16,10 +18,14 @@ export const ChatBlock = ({
   timeMessageSend,
   messages,
   img,
+  type,
 }: IChatBlock) => {
+  const isGroupLocalStorage = localStorage.getItem('isGroup');
+  const isGroup = isGroupLocalStorage === 'true';
+
   return (
     <Container isYou={isYou}>
-      <Avatar name={name} src={img} />
+      {!isGroup && <Avatar name={name} src={img} />}
       <Flex
         ml={isYou ? 0 : 2}
         mr={isYou ? 2 : 0}
@@ -27,10 +33,12 @@ export const ChatBlock = ({
         alignItems={isYou ? 'flex-end' : 'flex-start'}
       >
         <Flex flexDirection={isYou ? 'row-reverse' : 'row'}>
-          <Heading ml={isYou ? 2 : 0} mr={isYou ? 2 : 0} size='sx'>
-            {name}
-          </Heading>
-          <Text ml={2}>{timeMessageSend}</Text>
+          {!isGroup && (
+            <Heading ml={isYou ? 2 : 0} mr={isYou ? 2 : 0} size='sx'>
+              {name}
+            </Heading>
+          )}
+          {/* <Text ml={2}>{timeMessageSend}</Text> */}
         </Flex>
         {messages.map((message) => (
           <Message isYou={isYou}>{message}</Message>

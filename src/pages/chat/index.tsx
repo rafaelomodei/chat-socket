@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { ChatContent } from '../../components/organisms/chatContent';
+import { ChatContent, ETypeChat } from '../../components/organisms/chatContent';
 import { InputMessage } from '../../components/organisms/inputMessage';
 import { Loading } from '../../components/organisms/loading';
 import { NavBarChat } from '../../components/organisms/navBarChat/indext';
@@ -12,21 +12,24 @@ interface IContact {
   name: string;
   email: string;
 }
-interface IChat {
-  user: IContact;
-}
 
-const Chat = ({ user }: IChat) => {
+const Chat = () => {
   const [keyChat, setKeyChat] = useState<string>('');
-  const { messages, loadedMessages, getAllMessages, solicitationMessages } =
+  const { messages, loadedMessages, getMessagePrivate, solicitationMessages } =
     useMessage();
 
-  const { contact, getContactInfo } = useContact();
+  const { contact, getContactInfo, getContactToken } = useContact();
 
   useEffect(() => {
-    getAllMessages();
+    getMessagePrivate();
     getContactInfo();
+    solicitationMessages(keyChat);
+    getContactToken();
   });
+
+  useEffect(() => {
+    getMessagePrivate();
+  }, [getMessagePrivate]);
 
   useEffect(() => {
     console.info('Chat:keyChat: ', keyChat);
@@ -38,7 +41,7 @@ const Chat = ({ user }: IChat) => {
 
     key?.key && setKeyChat(key?.key);
     console.info('key:: ', key?.key);
-    console.info('userEmail:: ', userEmail);
+    console.info('listKeysContact:: ', contact?.listKeysContact);
   };
 
   useEffect(() => {
@@ -52,11 +55,12 @@ const Chat = ({ user }: IChat) => {
         name={contact?.name || 'User não encontrado'}
         img='https://lirp.cdn-website.com/9d12ecc7/dms3rep/multi/opt/caminhao-carreta-1920w.jpg'
       />
-      {loadedMessages ? (
+      {/* {loadedMessages ? (
         <Loading h='75%' />
       ) : (
         <ChatContent messages={messages} />
-      )}
+      )} */}
+      <ChatContent messages={messages} type={ETypeChat.PRIVATE} />
       <InputMessage keyChat={keyChat} />
     </Container>
   );

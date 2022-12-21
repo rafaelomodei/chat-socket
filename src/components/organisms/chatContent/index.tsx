@@ -6,18 +6,25 @@ import { ChatBlock } from '../chatBlock';
 import { Container } from './styled';
 
 export interface IMessage {
-  userSend?: string;
-  userRequest?: string;
-  timeMessageSend?: string;
-  messages: Array<string>;
+  sender: string;
+  daySend: string;
+  hourSend: string;
+  content: string;
 }
 
+export enum ETypeChat {
+  PRIVATE,
+  GROUP,
+}
 export interface IChatContent {
+  type: ETypeChat;
   messages: Array<IMessage>;
 }
 
-export const ChatContent = ({ messages }: IChatContent) => {
+export const ChatContent = ({ messages, type }: IChatContent) => {
   const bottomRef = useRef<HTMLDivElement>(null);
+  const userAuth = sessionStorage.getItem('userEmail');
+
   const { profile } = useUser();
 
   useEffect(() => {
@@ -28,10 +35,11 @@ export const ChatContent = ({ messages }: IChatContent) => {
     <Container>
       {messages.map((messageBlock) => (
         <ChatBlock
-          isYou={messageBlock.userSend === profile.id}
-          name={`${messageBlock.userSend}`}
-          timeMessageSend={'13:30'}
-          messages={messageBlock.messages}
+          isYou={messageBlock.sender === userAuth}
+          name={`${messageBlock.sender}`}
+          timeMessageSend={`${messageBlock.hourSend}`}
+          messages={[messageBlock.content]}
+          type={type}
         />
       ))}
       <div ref={bottomRef} />

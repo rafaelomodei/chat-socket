@@ -6,17 +6,16 @@ export const useMessage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [loadedMessages, setLoadingMessages] = useState(true);
 
-  const solicitationMessages = useCallback(async () => {
-    setInterval(() => {
-      socket.emit('getMessages');
-      setLoadingMessages(false);
-    }, 1000);
+  const solicitationMessages = useCallback(async (to: string) => {
+    // setInterval(() => {
+    socket.emit('refreshChatPrivate', { to: to });
+    setLoadingMessages(false);
+    // }, 1000);
   }, []);
 
-  const getAllMessages = useCallback(async () => {
+  const getMessagePrivate = useCallback(async () => {
     socket.on('chatPrivate', (data) => {
-      console.info('chatPrivate:: ', data);
-      if (data.content) setMessages([{ messages: [data.content] }]);
+      if (data.messages) setMessages(data.messages);
     });
   }, []);
 
@@ -30,9 +29,11 @@ export const useMessage = () => {
   }, []);
 
   const joinChatPrivate = useCallback(async (to: string) => {
+    const userAuth = sessionStorage.getItem('userEmail');
     console.info('Juntando ao contato: ', to);
     socket.emit('joinChatPrivate', {
       to,
+      from: userAuth,
     });
   }, []);
 
@@ -40,7 +41,7 @@ export const useMessage = () => {
     messages,
     loadedMessages,
     sendMessage,
-    getAllMessages,
+    getMessagePrivate,
     solicitationMessages,
     joinChatPrivate,
   };

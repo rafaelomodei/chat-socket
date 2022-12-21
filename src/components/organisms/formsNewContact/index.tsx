@@ -5,24 +5,18 @@ import {
   FormControl,
   Heading,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { Dispatch, useEffect, useState } from 'react';
 import { useContact } from '../../../hooks/contact/contact';
 import { theme } from '../../../utils/themes';
 import { InputForms } from '../../molecules/inputForms';
 import { Button } from './styled';
 
 export const FormsNewContact = () => {
-  const [name, setName] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
-  const [photo, setPhoto] = useState<string>('');
   const [userEmail, setUserEmail] = useState<string>('');
 
   const { registerContact, registeredContact } = useContact();
-  const { contacts, solicitationAllContacts } = useContact();
+  const { solicitationAllContacts } = useContact();
 
-  const handleInputName = (event: any) => setName(event.target.value);
-  const handleInputAddress = (event: any) => setAddress(event.target.value);
-  const handleInputPhoto = (event: any) => setPhoto(event.target.value);
   const handleInputEmail = (event: any) => setUserEmail(event.target.value);
 
   return (
@@ -33,20 +27,6 @@ export const FormsNewContact = () => {
       </Container>
       <Box mb={8}>
         <InputForms
-          label='Nome'
-          placeholder='Jão da Silva'
-          onChange={handleInputName}
-        />
-      </Box>
-      <Box mb={8}>
-        <InputForms
-          label='IP'
-          placeholder='Informe o ip'
-          onChange={handleInputAddress}
-        />
-      </Box>
-      <Box mb={16}>
-        <InputForms
           label='E-mail'
           placeholder='Informe o email'
           onChange={handleInputEmail}
@@ -56,14 +36,11 @@ export const FormsNewContact = () => {
         <Button
           onClick={() => {
             registerContact({
-              name,
-              address,
-              photo,
               userEmail,
-              listKeysContact: [],
             });
             registeredContact();
             solicitationAllContacts();
+            localStorage.setItem('isGroup', 'true');
           }}
         >
           Adicionar novo contato

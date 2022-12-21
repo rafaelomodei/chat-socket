@@ -116,7 +116,7 @@ export const ContactList = ({ getContact }: IContactList) => {
               <FormsNewContact />
             </TabPanel>
             <TabPanel>
-              <FormsNewGroup />
+              <FormsNewGroup getContact={getContact} />
             </TabPanel>
           </TabPanels>
         </Tabs>
